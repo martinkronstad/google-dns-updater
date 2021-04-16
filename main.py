@@ -37,6 +37,8 @@ def page_unauthorized(e):
 
 def main(request):
   logging.info("Update request started.")
+  logging.info(request)
+  logging.info(request.headers['X-Forwarded-For'])
   query_parameters = request.args
   
   # Assign our parameters

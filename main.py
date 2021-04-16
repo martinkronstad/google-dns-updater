@@ -39,6 +39,7 @@ def main(request):
   logging.info("Update request started.")
   logging.info(request)
   logging.info(request.headers['X-Forwarded-For'])
+  logging.info(request.headers['X-Forwarded-For'][0])
   query_parameters = request.args
   
   # Assign our parameters

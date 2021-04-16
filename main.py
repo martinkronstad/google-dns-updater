@@ -47,6 +47,9 @@ def main(request):
 
   # Check we have the required parameters
   if not (host and ip and key):
+    logging.info("host {}".format(host))
+    logging.info("key {}".format(key))
+    logging.info("ip {}".format(ip))
     return page_not_found(404)
 
   # Check the key
@@ -61,6 +64,8 @@ def main(request):
     if (host == record.name):
       for data in record.rrdatas:
         if (test_for_record_change(data, ip)):
+          logger.info('delete record')
+          logger.info(record)
           add_to_change_set(record, 'delete')
           add_to_change_set(create_record_set(host, record.record_type, ip), 'create')
           execute_change_set(changes)

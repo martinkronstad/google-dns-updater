@@ -37,14 +37,13 @@ def page_unauthorized(e):
 
 def main(request):
   logging.info("Update request started.")
-  logging.info(request)
-  logging.info(request.headers['X-Forwarded-For'])
-  logging.info(request.headers['X-Forwarded-For'][0])
   query_parameters = request.args
-  
+  logging.info("request headers")
+  logging.info(request.headers)
   # Assign our parameters
   host = query_parameters.get('host')
-  ip = query_parameters.get('ip')
+  # ip = query_parameters.get('ip')
+  ip = request.headers['X-Forwarded-For'];
   key = query_parameters.get('key')
   logging.info("IP to update is {}".format(ip))
 
